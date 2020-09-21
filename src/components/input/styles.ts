@@ -13,6 +13,7 @@ export const Container = styled.div<ContainerProps>`
   width: 100%;
   display: flex;
   color: #666360;
+  align-items: center;
 
   & + div {
     margin-top: 8px;
