@@ -1,4 +1,5 @@
 import React, { useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
@@ -11,7 +12,7 @@ import Logo from '../../assets/logo.svg';
 
 import Input from '../../components/input';
 import Button from '../../components/Button';
-import { Container, Content, Background } from './styles';
+import { Container, Content, Background, AnimatedContainer } from './styles';
 import { useAuth } from '../../hooks/AuthContext';
 import { useToast } from '../../hooks/ToastContext';
 
@@ -51,6 +52,8 @@ const SignIn: React.FC = () => {
           const errors = validationError(error);
 
           formRef.current?.setErrors(errors);
+
+          return;
         }
 
         addToast({
@@ -66,27 +69,29 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Content>
-        <img src={Logo} alt="GoBarber" />
+        <AnimatedContainer>
+          <img src={Logo} alt="GoBarber" />
 
-        <Form ref={formRef} onSubmit={handleLogin}>
-          <h1>Faça seu logon</h1>
+          <Form ref={formRef} onSubmit={handleLogin}>
+            <h1>Faça seu logon</h1>
 
-          <Input name="email" icon={FiMail} placeholder="E-mail" />
-          <Input
-            name="password"
-            icon={FiLock}
-            type="password"
-            placeholder="Senha"
-          />
+            <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <Input
+              name="password"
+              icon={FiLock}
+              type="password"
+              placeholder="Senha"
+            />
 
-          <Button type="submit">Entrar</Button>
+            <Button type="submit">Entrar</Button>
 
-          <a href="forgot">Esqueci minha senha </a>
-        </Form>
-        <a href="">
-          <FiLogIn />
-          Criar conta
-        </a>
+            <a href="forgot">Esqueci minha senha </a>
+          </Form>
+          <Link to="signup">
+            <FiLogIn />
+            Criar conta
+          </Link>
+        </AnimatedContainer>
       </Content>
       <Background />
     </Container>

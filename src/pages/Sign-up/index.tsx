@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 import { FiMail, FiLock, FiUser, FiArrowLeft } from 'react-icons/fi';
 import { Form } from '@unform/web';
@@ -8,7 +9,7 @@ import Logo from '../../assets/logo.svg';
 import validationError from '../../utils/getValidationErrors';
 import Input from '../../components/input';
 import Button from '../../components/Button';
-import { Container, Content, Background } from './styles';
+import { Container, Content, Background, AnimatedContainer } from './styles';
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -39,26 +40,28 @@ const SignUp: React.FC = () => {
     <Container>
       <Background />
       <Content>
-        <img src={Logo} alt="GoBarber" />
+        <AnimatedContainer>
+          <img src={Logo} alt="GoBarber" />
 
-        <Form ref={formRef} onSubmit={handleRegister}>
-          <h1>Faça seu cadastro</h1>
+          <Form ref={formRef} onSubmit={handleRegister}>
+            <h1>Faça seu cadastro</h1>
 
-          <Input name="name" icon={FiUser} placeholder="Nome" />
-          <Input name="email" icon={FiMail} placeholder="E-mail" />
-          <Input
-            name="password"
-            icon={FiLock}
-            type="password"
-            placeholder="Senha"
-          />
+            <Input name="name" icon={FiUser} placeholder="Nome" />
+            <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <Input
+              name="password"
+              icon={FiLock}
+              type="password"
+              placeholder="Senha"
+            />
 
-          <Button type="submit">Cadastrar</Button>
-        </Form>
-        <a href="">
-          <FiArrowLeft />
-          Voltar para logon
-        </a>
+            <Button type="submit">Cadastrar</Button>
+          </Form>
+          <Link to="/">
+            <FiArrowLeft />
+            Voltar para logon
+          </Link>
+        </AnimatedContainer>
       </Content>
     </Container>
   );
