@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
@@ -26,6 +26,7 @@ const ResetPassword: React.FC = () => {
 
   const { addToast } = useToast();
   const history = useHistory();
+  const location = useLocation();
 
   const handleLogin = useCallback(
     async (data: ResetPasswordFormData) => {
@@ -34,15 +35,29 @@ const ResetPassword: React.FC = () => {
 
         const schema = Yup.object().shape({
           password: Yup.string().required('Senha obrigatória'),
+          password_confirmation: Yup.string().oneOf(
+            [Yup.ref('password')],
+            'As senhas não conferem',
+          ),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        api.post('reset-password');
+        const { password, password_confirmation } = data;
+        const token = location.search.replace('?token=', '');
 
-        history.push('/signin');
+        if (!token) {
+          throw new Error();
+        }
+        await api.post('password/reset', {
+          password,
+          password_confirmation,
+          token,
+        });
+
+        history.push('/');
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = validationError(error);
@@ -59,7 +74,7 @@ const ResetPassword: React.FC = () => {
         });
       }
     },
-    [addToast, history],
+    [addToast, history, location.search],
   );
 
   return (

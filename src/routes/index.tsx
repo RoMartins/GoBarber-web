@@ -11,10 +11,10 @@ import ResetPassword from '../pages/ResetPassword';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/" exact component={SignIn} isPrivate />
-    <Route path="/signup" component={SignUp} isPrivate />
-    <Route path="/forgot-password" component={ForgotPassword} isPrivate />
-    <Route path="/reset-password" component={ResetPassword} isPrivate />
+    <Route path="/" exact component={SignIn} />
+    <Route path="/signup" component={SignUp} />
+    <Route path="/forgot-password" component={ForgotPassword} />
+    <Route path="/reset-password" component={ResetPassword} />
 
     <Route path="/dashboard" component={Dashboard} isPrivate />
   </Switch>
