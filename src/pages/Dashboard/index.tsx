@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiPower } from 'react-icons/fi';
+import { FiClock, FiPower } from 'react-icons/fi';
 import {
   Container,
   Header,
@@ -7,6 +7,7 @@ import {
   Profile,
   Content,
   Schedule,
+  NextAppointments,
   Calendar,
 } from './styles';
 import logoImg from '../../assets/logo.svg';
@@ -36,7 +37,30 @@ const Dashboard: React.FC = () => {
       </Header>
 
       <Content>
-        <Schedule></Schedule>
+        <Schedule>
+          <h1>Horários agendados</h1>
+          <p>
+            <span>Hoje</span>
+            <span>Dia 06</span>
+            <span>Segunda-feira</span>
+          </p>
+
+          <NextAppointments>
+            <strong>Atendimento a seguir</strong>
+            <div>
+              <img
+                src="https://app-gobarber-97.s3.amazonaws.com/aaa3efda2ad17322a05d-perfil.jpg"
+                alt=""
+                srcSet=""
+              />
+              <strong>Rodrigo Martins</strong>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+            </div>
+          </NextAppointments>
+        </Schedule>
         <Calendar />
       </Content>
     </Container>
