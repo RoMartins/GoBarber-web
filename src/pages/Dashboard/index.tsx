@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiClock, FiPower } from 'react-icons/fi';
 import {
   Container,
@@ -9,11 +9,14 @@ import {
   Schedule,
   NextAppointments,
   Calendar,
+  Section,
+  Appointment,
 } from './styles';
 import logoImg from '../../assets/logo.svg';
 import { useAuth } from '../../hooks/AuthContext';
 
 const Dashboard: React.FC = () => {
+  const [selectDate, setSelectedDate] = useState(new Date());
   const { signOut, user } = useAuth();
 
   return (
@@ -60,6 +63,59 @@ const Dashboard: React.FC = () => {
               </span>
             </div>
           </NextAppointments>
+          <Section>
+            <strong>Manhã</strong>
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img
+                  src="https://app-gobarber-97.s3.amazonaws.com/aaa3efda2ad17322a05d-perfil.jpg"
+                  alt=""
+                  srcSet=""
+                />
+                <strong>Rodrigo Martins</strong>
+              </div>
+            </Appointment>
+          </Section>
+
+          <Section>
+            <strong>Tarde</strong>
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img
+                  src="https://app-gobarber-97.s3.amazonaws.com/aaa3efda2ad17322a05d-perfil.jpg"
+                  alt=""
+                  srcSet=""
+                />
+                <strong>Rodrigo Martins</strong>
+              </div>
+            </Appointment>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img
+                  src="https://app-gobarber-97.s3.amazonaws.com/aaa3efda2ad17322a05d-perfil.jpg"
+                  alt=""
+                  srcSet=""
+                />
+                <strong>Rodrigo Martins</strong>
+              </div>
+            </Appointment>
+          </Section>
         </Schedule>
         <Calendar />
       </Content>
